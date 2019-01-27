@@ -95,7 +95,7 @@ export default class CameraScreen extends React.Component {
                   padding: 25,
                   alignSelf: 'flex-end',
                   borderRadius: 50,
-                  backgroundColor: 'red',
+                  backgroundColor: '#E07A5F',
                 }}
               />
             </TouchableOpacity>
