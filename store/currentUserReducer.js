@@ -16,11 +16,21 @@ const defaultUser = {
 const setUser = createAction('users/setUser');
 
 const currentUserReducer = createReducer(0, {
-  [setUser]: async (state, action) => {
+  SET_USER: (state, action) => {
+    console.log('action is', action);
+    console.log('state is', state);
     const desiredUser = action.payload;
-    axios.get(`${process.env.API_BASE_URL}/users/get/?id=${desiredUser}`)
+    const url = `https://magicmirror.lib.id/magicmirror@0.1.5/users/get/?id=${desiredUser}`;
+    console.log(url);
+    axios.get(url)
       .then(res => {
-        state = res;
+        console.log('hishfladsjhfahslkjfdaslkfhasdaslkhnadfslhsfkdasflkh');
+        // console.log(JSON.parse(res));
+        // return {
+        //   ...JSON.parse(res),
+        //   ...state,
+        // }
+        return state;
       })
       .catch(err => {
         console.error('Error is', err);

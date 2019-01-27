@@ -9,15 +9,24 @@ import {
   View,
   Dimensions
 } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Input } from 'react-native-elements';
 import { WebBrowser,  LinearGradient } from 'expo';
+import { connect } from 'react-redux'; 
 
 import { MonoText } from '../components/StyledText';
 
-export default class AuthLoadingScreen extends React.Component {
+class AuthLoadingScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      inp: '1',
+    };
+  }
 
   render() {
     return (
@@ -29,6 +38,10 @@ export default class AuthLoadingScreen extends React.Component {
             <View style={styles.logoContainer}>
                 <Image style={styles.test} source={require('../assets/images/MM-logo-v2.png')}/>
             </View>
+            <Input label="userID" onChangeText={e => {
+              this.setState({ inp: e });
+            }} value={this.state.inp} />
+            <Input label="Password" />
             <Button
                 title={"Forgot your password"} 
                 style={styles.forgotYourPassword}
@@ -38,13 +51,24 @@ export default class AuthLoadingScreen extends React.Component {
             <Button
                 style={styles.loginButton}
                 title={"Login"}
-                onPress={() => this.props.navigation.navigate('Main')}    
+                onPress={() => {
+                  console.log('hajsdfhhaklsdf   ', this.state.inp);
+                  this.props.setUserId(this.state.inp);
+                  this.props.navigation.navigate('Main');
+                }}    
             />
         </LinearGradient>
       </View>
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  setUserId: userId => dispatch({
+    type: 'SET_USER',
+    payload: userId,
+  }),
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -80,3 +104,5 @@ const styles = StyleSheet.create({
     width: '100%',
   }
 });
+
+export default connect(null, mapDispatchToProps)(AuthLoadingScreen);
