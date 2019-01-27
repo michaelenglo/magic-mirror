@@ -30,6 +30,7 @@ export default class CameraBottomButtons extends React.Component {
               name='circle-o' 
               color="#ffffff"
               size={100}
+              onPress={() => this.props.snap()}
           />
 
           <Icon
