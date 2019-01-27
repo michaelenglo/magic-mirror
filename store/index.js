@@ -1,17 +1,17 @@
 import { configureStore, getDefaultMiddleware } from 'redux-starter-kit';
 import { currentUserReducer, defaultUser } from './currentUserReducer';
-// import { friendsReducer, defaultFriends } from './friendsReducer';
+import { friendsReducer, defaultFriends } from './friendsReducer';
 
 const middleware = [...getDefaultMiddleware()];
 
 const reducer = {
   currentUser: currentUserReducer,
-  // friends: friendsReducer,
+  friends: friendsReducer,
 };
 
 const preloadedState = {
   currentUser: defaultUser,
-  // friends: defaultFriends,
+  friends: defaultFriends,
 }
 
 const store = configureStore({
