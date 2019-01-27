@@ -4,11 +4,13 @@ import HomeScreen from '../screens/HomeScreen';
 import CameraScreen from '../screens/CameraScreen';
 import CaptionScreen from '../screens/CaptionScreen';
 import ReactionCaptureScreen from '../screens/ReactionCaptureScreen';
+import ReactionSentScreen from '../screens/ReactionSentScreen';
 
 
 const CameraStack = createStackNavigator({
-  ReactionCapture: ReactionCaptureScreen,
   Home: HomeScreen,
+  ReactionSent: ReactionSentScreen,
+  ReactionCapture: ReactionCaptureScreen,
   Caption: CaptionScreen,
   Camera: CameraScreen,
 },
