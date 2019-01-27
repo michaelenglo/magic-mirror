@@ -18,7 +18,7 @@ const setUser = createAction('users/setUser');
 const currentUserReducer = createReducer(0, {
   [setUser]: async (state, action) => {
     const desiredUser = action.payload;
-    axios.get(`${process.env.API_BASE_URL}/user?id=${desiredUser}`)
+    axios.get(`${process.env.API_BASE_URL}/users/get/?id=${desiredUser}`)
       .then(res => {
         state = res;
       })
