@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   TouchableHighlight,
@@ -8,10 +7,19 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class FriendPhoto extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
   render() {
     return (
-      <TouchableHighlight onPress={() => this.props.onPress()} >
-        <View style={{ height: 60, display: 'flex', flexDirection: 'row', marginBottom: 40 }}>
+      <TouchableHighlight onPress={() => this.props.onPress()}>
+        <View style={{
+          height: 60, display: 'flex', flexDirection: 'row', marginBottom: 40,
+        }}
+        >
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Icon name="user" style={{ color: '#E07A5F' }} size={40} />
           </View>

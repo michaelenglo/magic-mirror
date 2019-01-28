@@ -8,6 +8,7 @@
     "extends": "airbnb",
     "rules": {
         "react/destructuring-assignment": "off",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "react/jsx-filename-extension": "off"
     }
 }

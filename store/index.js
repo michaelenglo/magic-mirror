@@ -12,13 +12,13 @@ const reducer = {
 const preloadedState = {
   currentUser: defaultUser,
   // friends: defaultFriends,
-}
+};
 
 const store = configureStore({
   reducer,
   middleware,
   preloadedState,
   devTools: process.env.NODE_ENV !== 'production',
-})
+});
 
 export default store;
