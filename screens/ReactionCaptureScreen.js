@@ -4,6 +4,8 @@ import { Camera, Permissions } from 'expo';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 import CameraBottomButtons from '../components/CameraBottomButtons';
+import axios from 'axios';
+// import fs from 'fs';
 
 
 export default class CameraScreen extends React.Component {
@@ -18,6 +20,14 @@ export default class CameraScreen extends React.Component {
 
     this.renderPreviewPhoto = this.renderPreviewPhoto.bind(this);
     this.snap = this.snap.bind(this);
+  }
+
+  async handlePhotoTaken() {
+    // await fs.writeFileSync('../assets/images/Englo.png', this.photoTaken);
+    // await axios.post('https://magicmirror.lib.id/magicmirror@0.1.5/images/post/',
+    //   fs.readFileSync('../assets/images/Englo.png')
+    // )
+    this.props.navigation.navigate('ReactionSent');
   }
 
   async componentDidMount() {
@@ -230,7 +240,7 @@ export default class CameraScreen extends React.Component {
       return (
         <View style={styles.container}>
           <ImageBackground
-            source={this.state.countDown > 0 ? null : require('../assets/images/IMG_1265.jpg')}
+            source={this.state.countDown > 0 ? null : require('../assets/images/englo3.jpg')}
             style={{ flex: 1, backgroundColor: '#000000' }}
           >
             <View style={{
@@ -268,10 +278,10 @@ export default class CameraScreen extends React.Component {
             </View>
             <View style={{ flex: 1, display: 'flex', flexDirection: 'row', backgroundColor: '#ffffff', height: '100%', width: '100%' }}>
               <TouchableHighlight style={{ flex: 1, height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{color: '#E07A5F'}} >ACTUAL REACTION</Text>
+                <Text style={{color: '#E07A5F'}} onPress={() => this.handlePhotoTaken()} >ACTUAL REACTION</Text>
               </TouchableHighlight>
               <TouchableHighlight  style={{ flex: 1, height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{color: '#E07A5F'}} >ANONYMOUS REACTION</Text>
+                <Text style={{color: '#E07A5F'}} onPress={() => this.handlePhotoTaken()}>ANONYMOUS REACTION</Text>
               </TouchableHighlight>
             </View>
           </ImageBackground>

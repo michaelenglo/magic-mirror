@@ -6,11 +6,13 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import { connect } from 'react-redux';
+import config from '../config';
+import { get } from 'lodash';
 
 import FriendPhoto from '../components/FriendPhoto';
 import { ScrollView } from 'react-native-gesture-handler';
 
-class HomeScreen extends React.Component {
+export default class HomeScreen extends React.Component {
 
   constructor(props) {
     super(props);
@@ -20,7 +22,37 @@ class HomeScreen extends React.Component {
     }
   }
 
+
   render() {
+    let receivedOrSent;
+    if (this.state.tab === 'received') {
+      receivedOrSent =
+        <ScrollView>
+          <FriendPhoto name={get(config, 'currentUser.first_name')} caption="Night Out" read={false} onPress={() => this.props.navigation.navigate('ReactionCapture')} />
+          <FriendPhoto name="Wedding Party" caption="Food Hunting" read={true} onPress={() => this.props.navigation.navigate('ReactionCapture')}/>
+          <FriendPhoto name="Interview" caption="Night Out" read={false} onPress={() => this.props.navigation.navigate('ReactionCapture')}/>
+          <FriendPhoto name="Date Night" caption="Food Hunting" read={true} onPress={() => this.props.navigation.navigate('ReactionCapture')}/>
+          <FriendPhoto name="Graduation Party" caption="Night Out" read={false} onPress={() => this.props.navigation.navigate('ReactionCapture')}/>
+          <FriendPhoto name="Singing Competition" caption="Food Hunting" read={true} onPress={() => this.props.navigation.navigate('ReactionCapture')}/>
+          <FriendPhoto name="Girl's Night Out" caption="Night Out" read={false} onPress={() => this.props.navigation.navigate('ReactionCapture')}/>
+          <FriendPhoto name="Hackathon" caption="Food Hunting" read={true} onPress={() => this.props.navigation.navigate('ReactionCapture')}/>
+          <FriendPhoto name="Interview" caption="Food Hunting" read={true} onPress={() => this.props.navigation.navigate('ReactionCapture')}/>
+          <FriendPhoto name="Date Night" caption="Night Out" read={false} onPress={() => this.props.navigation.navigate('ReactionCapture')}/>
+          <FriendPhoto name="Job Interview" caption="Food Hunting" read={true} onPress={() => this.props.navigation.navigate('ReactionCapture')}/>
+          <FriendPhoto name="Alumni Dinner" caption="Night Out" read={false} onPress={() => this.props.navigation.navigate('ReactionCapture')}/>
+          <FriendPhoto name="NW Hacks 2019" caption="Food Hunting" read={true} onPress={() => this.props.navigation.navigate('ReactionCapture')}/>
+        </ScrollView>
+    } else {
+      receivedOrSent =
+        <ScrollView>
+          <FriendPhoto name="NW Hacks 2019" caption="Food Hunting" read={true} />
+          <FriendPhoto name="Graduation Party" caption="Night Out" read={false} />
+          <FriendPhoto name="Wedding Party" caption="Food Hunting" read={true} />
+          <FriendPhoto name="Interview" caption="Night Out" read={false} />
+          <FriendPhoto name="Singing Competition" caption="Food Hunting" read={true} />
+          <FriendPhoto name="Hackathon" caption="Food Hunting" read={true} />
+        </ScrollView>
+    }
     return (
       <View style={styles.container}>
         <View style={{ flex: 1, display: 'flex', flexDirection: 'row' }}>
@@ -32,30 +64,12 @@ class HomeScreen extends React.Component {
           </TouchableHighlight>
         </View>
         <View style={{ flex: 7 }}>
-          <ScrollView>
-            <FriendPhoto name={this.props.currentUser.first_name} caption="Night Out" read={false} onPress={() => this.props.navigation.navigate('ReactionCapture')} />
-            <FriendPhoto name="Wedding Party" caption="Food Hunting" read={true} />
-            <FriendPhoto name="Interview" caption="Night Out" read={false} />
-            <FriendPhoto name="Date Night" caption="Food Hunting" read={true} />
-            <FriendPhoto name="Graduation Party" caption="Night Out" read={false} />
-            <FriendPhoto name="Singing Competition" caption="Food Hunting" read={true} />
-            <FriendPhoto name="Girl's Night Out" caption="Night Out" read={false} />
-            <FriendPhoto name="Hackathon" caption="Food Hunting" read={true} />
-            <FriendPhoto name="Interview" caption="Food Hunting" read={true} />
-            <FriendPhoto name="Date Night" caption="Night Out" read={false} />
-            <FriendPhoto name="Job Interview" caption="Food Hunting" read={true} />
-            <FriendPhoto name="Alumni Dinner" caption="Night Out" read={false} />
-            <FriendPhoto name="NW Hacks 2019" caption="Food Hunting" read={true} />
-          </ScrollView>
+          {receivedOrSent}
         </View>
       </View>
     );
   }
 }
-
-const mapStateToProps = (state) => ({
-  currentUser: state.currentUser,
-});
 
 const styles = StyleSheet.create({
   container: {
@@ -64,4 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps, null)(HomeScreen);
+// export default connect(mapStateToProps, null)(HomeScreen);

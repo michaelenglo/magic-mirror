@@ -38,6 +38,7 @@ export default class CaptionSCreen extends React.Component {
               backgroundColor: '#E07A5F',
             }}
             titleStyle={{ fontWeight: "300", fontSize: 20 }}
+            onPress={() => this.props.navigation.navigate("Home")}
           />
         </View>
       </View>

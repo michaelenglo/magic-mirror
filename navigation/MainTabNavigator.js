@@ -5,6 +5,7 @@ import CameraScreen from '../screens/CameraScreen';
 import CaptionScreen from '../screens/CaptionScreen';
 import ReactionCaptureScreen from '../screens/ReactionCaptureScreen';
 import ReactionSentScreen from '../screens/ReactionSentScreen';
+import ReactionFinal from '../screens/ReactionFinal';
 
 
 const CameraStack = createStackNavigator({
@@ -13,6 +14,7 @@ const CameraStack = createStackNavigator({
   ReactionCapture: ReactionCaptureScreen,
   Caption: CaptionScreen,
   Camera: CameraScreen,
+  ReactionFinal: ReactionFinal,
 },
 {
   headerMode: 'none',

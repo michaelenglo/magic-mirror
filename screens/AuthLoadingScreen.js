@@ -11,11 +11,11 @@ import {
 } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import { WebBrowser,  LinearGradient } from 'expo';
-import { connect } from 'react-redux'; 
+import axios from 'axios';
+import config from '../config';
 
-import { MonoText } from '../components/StyledText';
 
-class AuthLoadingScreen extends React.Component {
+export default class AuthLoadingScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
@@ -39,6 +39,7 @@ class AuthLoadingScreen extends React.Component {
                 <Image style={styles.test} source={require('../assets/images/MM-logo-v2.png')}/>
             </View>
             <Input label="userID" onChangeText={e => {
+              console.log('hajsdfhhaklsdf', e);
               this.setState({ inp: e });
             }} value={this.state.inp} />
             <Input label="Password" />
@@ -51,10 +52,10 @@ class AuthLoadingScreen extends React.Component {
             <Button
                 style={styles.loginButton}
                 title={"Login"}
-                onPress={() => {
-                  console.log('hajsdfhhaklsdf   ', this.state.inp);
-                  this.props.setUserId(this.state.inp);
-                  this.props.navigation.navigate('Main');
+                onPress={async () => {
+                  console.log('hajsdfhhaklsdf');
+                  await setUserId(this.state.inp);
+                  this.props.navigation.navigate('Camera');
                 }}    
             />
         </LinearGradient>
@@ -63,12 +64,27 @@ class AuthLoadingScreen extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  setUserId: userId => dispatch({
-    type: 'SET_USER',
-    payload: userId,
-  }),
-});
+const setUserId = async userId => {
+  console.log('userId :', userId);
+  const url = `https://magicmirror.lib.id/magicmirror@0.1.5/users/get/?id=${userId}`;
+  console.log('url :', url);
+  // const res = await axios.get(url);
+  config.currentUser = {
+    "id": 1,
+    "first_name": "Nico",
+    "last_name": "Alimin",
+    "username": "nicoalmin",
+    "email": "nicoalimin@yahoo.com"
+  }
+  console.log('config :', config);
+}
+
+// const mapDispatchToProps = (dispatch) => ({
+//   setUserId: userId => dispatch({
+//     type: 'SET_USER',
+//     payload: userId,
+//   }),
+// });
 
 const styles = StyleSheet.create({
   container: {
@@ -105,4 +121,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, mapDispatchToProps)(AuthLoadingScreen);
+// export default connect(null, mapDispatchToProps)(AuthLoadingScreen);

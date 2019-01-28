@@ -97,6 +97,7 @@ export default class CameraScreen extends React.Component {
                   borderRadius: 50,
                   backgroundColor: '#E07A5F',
                 }}
+                onPress={() => this.props.navigation.navigate('Caption')}
               />
             </TouchableOpacity>
           </View>
