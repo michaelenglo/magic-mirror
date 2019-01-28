@@ -267,10 +267,10 @@ export default class CameraScreen extends React.Component {
               <Text style={{ color: 'white', fontSize: 120 }}>{counter}</Text>
             </View>
             <View style={{ flex: 1, display: 'flex', flexDirection: 'row', backgroundColor: '#ffffff', height: '100%', width: '100%' }}>
-              <TouchableHighlight style={{ flex: 1, height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+              <TouchableHighlight style={{ flex: 1, height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }} onPress={() => this.props.navigation.navigate('ReactionSent')}>
                 <Text style={{color: '#E07A5F'}} >ACTUAL REACTION</Text>
               </TouchableHighlight>
-              <TouchableHighlight  style={{ flex: 1, height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+              <TouchableHighlight  style={{ flex: 1, height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }} onPress={() => this.props.navigation.navigate('ReactionSent')}>
                 <Text style={{color: '#E07A5F'}} >ANONYMOUS REACTION</Text>
               </TouchableHighlight>
             </View>

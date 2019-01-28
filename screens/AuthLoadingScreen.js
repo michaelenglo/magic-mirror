@@ -51,8 +51,7 @@ class AuthLoadingScreen extends React.Component {
             <Button
                 style={styles.loginButton}
                 title={"Login"}
-                onPress={() => {
-                  console.log('hajsdfhhaklsdf   ', this.state.inp);
+                onPress={() => {                   
                   this.props.setUserId(this.state.inp);
                   this.props.navigation.navigate('Main');
                 }}    
